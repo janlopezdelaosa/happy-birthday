@@ -2,21 +2,32 @@ export const structure = [
     // 0
     {
         text: '¿Cómo se entrará aquí...?',
-        password: 'BORJUAPPY'
+        password: 'BORJUAPPY',
     },
     {
-        text: 'He conseguido colarme, pero...'
+        text: 'He conseguido colarme, pero...',
+        image:{
+            top: 75,
+            left: -30,
+            width: '3/4'
+        }
     },
     {
-        text: '...tengo que tener cuidado, no estoy solo'
+        text: '...tengo que tener cuidado, no estoy solo.',
+        image:{
+            top: 0,
+        }
     },
     {
-        text: 'escucho ruidos y oigo olores que no son felinos. ¿Qué serán?',
+        text: 'Escucho ruidos y \n oigo olores que\n no son felinos. \n¿De qué serán?',
+        image:{
+            top: 40,
+        },
         options: [
             {
-                text: 'Humanos',
+                text: 'De pedos',
                 isCorrect: false,
-                answer: 'nah, a mi me huelen a otra cosa'
+                answer: 'Ojalá 💨 '
             },
             {
                 text: 'Maricones',
@@ -27,21 +38,29 @@ export const structure = [
     },
     // 4
     {
-        text: 'Me han cazado!'
+        text: '¡Me han cazado!',
+        image:{
+            top: 100,
+            left: 23
+        },
     },
     {
-        text: 'No paran de cogerme, acariciarme...'
+        text: 'No paran de adorarme..',
+        image:{
+            top: 93,
+            left: 35
+        },
     },
     {
-        text: 'besarme y quererme. Es..',
+        text: '..besarme y quererme.',
         options: [
             {
-                text: 'Me encanta',
+                text: '¡Me encanta!',
                 isCorrect: false,
-                answer: 'Sí, me encanta! No, ha sido sólo por un segundo, en realidad es...'
+                answer: 'Que no pares de rascar 😑'
             },
             {
-                text: 'Horrible',
+                text: '¡Es horrible!',
                 isCorrect: true,
                 answer: ''
             }
@@ -52,46 +71,60 @@ export const structure = [
         text: 'Encima apareció un señor'
     },
     {
-        text: 'pero me gustan sus pelotas'
+        text: 'Pero bueno, no se está mal en sus patotas',
+        image:{
+            top: 108,
+            left: 45
+        },
     },
     {
-        text: 'bueno me gustan las pelotas'
+        text: 'Hmmm... patotas...'
     },
     {
-        text: 'Hmmmm...',
+        text: '🤩 Oh, sí...',
         options: [
             {
-                text: 'Patitas',
-                isCorrect: true,
-                answer: ''
+                text: 'Patotas',
+                isCorrect: false,
+                answer: 'Era mentira lo de las patotas 😏'
             },
             {
-                text: 'Pelotitas',
-                isCorrect: false,
-                answer: 'Sí, me encanta! No, ha sido sólo por un segundo, en realidad es...'
+                text: 'Pelotas',
+                isCorrect: true,
+                answer: ''
             }
         ]
     },
     // 11
     {
-        text: 'Yo trabajo mucho'
+        text: 'Trabajo mucho',
+        image:{
+            contain: true,
+            top: 108,
+        }
     },
     {
-        text: 'Estos humanos no hacen nada.'
+        text: 'Estos humanos no hacen nada.',
+        image:{
+            top: 150,
+        }
     },
     {
         text: 'Si no fuera por mi no se haría nada en esta casa.'
     },
     {
-        text: 'Hasta me han dado un premio a...',
+        text: 'Hasta me han dado un premio a "El más..."',
+        image:{
+            top: 80,
+        },
         options: [
             {
-                text: '',
+                text: 'Ronroneador',
                 isCorrect: false,
-                answer: 'Sí, me encanta! No, ha sido sólo por un segundo, en realidad es...'
+                answer: 'Prrrrrrrrr 🙃'
             },
             {
-                text: 'El más cosoto',
+                text: 'Cosoto',
                 isCorrect: true,
                 answer: ''
             }
@@ -99,13 +132,25 @@ export const structure = [
     },
     // 15
     {
-        text: 'Pero mi vocación es dormir.'
+        text: 'Mi vocación es dormir. \n \n Dormir como un cosoto.',
+        image:{
+            contain: true,
+            top: 60,
+        }
     },
     {
-        text: 'Dormir como una ensaimada.'
+        text: 'Dormir como una ensaimada.',
+        image:{
+            top: 150,
+        }
     },
     {
-        text: 'Dormir como una salchicha.'
+        text: 'Dormir como una salchicha.',
+        image:{
+            top: 60,
+            left: 90,
+            rotate: 270
+        }
     },
     {
         text: 'Dormir como un...',
@@ -118,16 +163,25 @@ export const structure = [
             {
                 text: 'Dragón',
                 isCorrect: false,
-                answer: '¡Soy un dragón!'
+                answer: '¡Soy un dragón! 🐉'
             }
-        ]
+        ],
+        image:{
+            top: 10
+        }
     },
     // 19
     {
-        text: 'En realidad no están tan mal estos humanos.'
+        text: 'En realidad \n no están tan mal \n estos humanos.',
+        image:{
+            top: 5
+        }
     },
     {
-        text: 'Así que aprovecho para decirte...',
+        text: 'En realidad lo que quería decirte es que...',
+        image:{
+            top: 2
+        },
         options: [
             {
                 text: 'Te quiero',
@@ -135,7 +189,7 @@ export const structure = [
                 answer: '*mordisco*'
             },
             {
-                text: 'Happy Birthday!',
+                text: '¡Happy Birthday!',
                 isCorrect: true,
                 answer: ''
             }
@@ -143,12 +197,23 @@ export const structure = [
     },
     // 21
     {
-        text: 'Pero vuelve ya ¬¬.'
+        text: 'Pero vuelve ya 😑',
+        image:{
+            top: 120
+        },
     },
     {
-        text: 'Te espero.'
+        text: 'Te espero.',
+        image:{
+            top: 155,
+            left: 60
+        },
     },
     {
-        text: 'FIN.'
+        text: '❤️',
+        image:{
+            top: 80,
+            contain: true
+        },
     }
 ]
