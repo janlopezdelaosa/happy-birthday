@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { structure } from '@/data/structure';
-import { text } from 'stream/consumers';
 
 const useFrameNumberFromPathname = (): number => {
   const pathname = usePathname();                    // "/0", "/2", ...
@@ -28,30 +27,30 @@ const useFrameNumberFromPathname = (): number => {
 export default function Stage1() {
   const router = useRouter();
   const frameNumber = useFrameNumberFromPathname();
-  console.log({ frameNumber });
   const frameData = structure[frameNumber];
-  console.log({ frameData });
 
   // ---
   const [password, setPassword] = useState('');
-  const [isPasswordSubmited, setIsPasswordSubmited] = useState(false);
   // ---
   const [isOptionSelected, setIsOptionSelected] = useState(false);
   const [feedback, setFeedback] = useState('');
 
+  const wrongPasswordFeedbacks = [
+    '¿Cómo se te ocurre eso?, ¡marichocho!', '*mordisco*', 'Dedícate a otra cosa y ráscame', '😱'
+  ]
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === frameData.password) {
-      // setIsPasswordSubmited(true);
       setFeedback('😻');
       setTimeout(() => router.push('/1'), 1500)
     } else {
-      setFeedback('Wrong password, try again!');
+      setFeedback(wrongPasswordFeedbacks[Math.floor(Math.random() * wrongPasswordFeedbacks.length)]);
       setTimeout(() => {
         setFeedback('');
         setPassword('');
         setIsOptionSelected(false);
-      }, 2000)
+      }, 1500)
     }
   };
 
@@ -59,21 +58,33 @@ export default function Stage1() {
     setIsOptionSelected(true)
     if (isCorrect) {
       setFeedback('😻');
-      setTimeout(() => router.push(`/${frameNumber + 1}`), 1500)
+      setTimeout(() => router.push(`/${frameNumber + 1}`), 1000)
     } else {
       setFeedback(answer);
       setTimeout(() => {
         setFeedback('');
         setIsOptionSelected(false);
-      }, 3000)
+      }, 1500)
     }
   };
 
   const isFirstFrame = frameNumber === 1
   const isLastFrame = frameNumber >= structure.length - 1
 
+  const [hasFinishedGame, setHasFinishedGame] = useState(false);
+
+  useEffect(() => {
+    setHasFinishedGame(localStorage.getItem('gameFinished') === 'true');
+  }, []);
+
+  const back = () => router.push(`/${frameNumber === 0 ? structure.length - 1 : frameNumber - 1}`)
   const pushPrevFrame = () => !isFirstFrame && router.push(`/${frameNumber - 1}`)
-  const pushNextFrame = () => router.push(`/${isLastFrame ? '/' : frameNumber + 1}`)
+  const pushNextFrame = () => {
+    router.push(`/${isLastFrame ? '/' : frameNumber + 1}`)
+    if (isLastFrame) {
+      localStorage.setItem('gameFinished', 'true');
+    }
+  }
 
   const contain = frameData?.image?.contain ?? false;
   const textTop = frameData?.image?.top ?? 20;
@@ -81,22 +92,26 @@ export default function Stage1() {
   const textWidth = frameData?.image?.width ?? 'full';
   const textRotate = frameData?.image?.rotate ?? '0';
 
-  console.log({textTop, textLeft, textWidth})
-  console.log(frameData.text)
-
 
   return (
     <main className='touch-none'>
       <p className='hidden -ml-30 w-3/4 mt-30 mt-100 ml-23 mt-90 ml-35 mt-93 mt-108 ml-45 mt-150 ml-90 mt-5 mt-2 ml-55 mt-155'></p>
+      {hasFinishedGame &&
+        <button className='absolute top-3 left-3 z-1' onClick={back}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-14 drop-shadow-[0_1.5px_1.5px_rgba(254,254,254,1)]">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+        </button>
+      }
       <div className='absolute inset-0 flex border-3 bg-black'>
-        <img className={`${contain ? 'absolute' : '' } object-${contain ? 'contain' : 'cover' } `} src={`/photos/${frameNumber}.jpeg`} />
+        <img className={`${contain ? 'absolute' : ''} object-${contain ? 'contain' : 'cover'} `} src={`/photos/${frameNumber}.jpeg`} />
       </div>
       <div className='absolute inset-0 flex justify-center'>
         {
           frameData.password ?
             <>
               <h1 className='mt-10 text-center text-5xl font-bold'>HAPPY<br />BIRTHDAY</h1>
-              {feedback && <h2 className='absolute bottom-57 text-black text-2xl drop-shadow-[0_1.5px_1.5px_rgba(250,250,250,1)]'>{feedback}</h2>}
+              {feedback && <h2 className='absolute bottom-57 text-black text-2xl text-center drop-shadow-[0_1.5px_1.5px_rgba(250,250,250,1)]'>{feedback}</h2>}
               <form className='absolute bottom-20 flex flex-col items-center text-white text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' onSubmit={handleSubmit}>
                 <label className='text-center'>{frameData.text}</label>
                 <input className='text-center border my-4'
@@ -104,7 +119,7 @@ export default function Stage1() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className='border bg-zinc-200 rounded-xl w-fit text-black px-10' type="submit">Submit</button>
+                <button className='border bg-zinc-200 rounded-xl w-fit text-black px-10' type="submit">Entrar</button>
               </form>
             </>
 
@@ -131,26 +146,4 @@ export default function Stage1() {
       </div>
     </main>
   );
-
-  // return (
-  //   <main>
-  //     <h1>🎈 Stage 1</h1>
-  //     <p>Soy un ...</p>
-  //     <button disabled={isOptionSelected} onClick={ ()=> onOptionSelected('dragón') }>... dragón</button>
-  //     <button disabled={isOptionSelected} onClick={ ()=> onOptionSelected('cosoto') }>... cosoto</button>
-  //     <button disabled={isOptionSelected} onClick={ ()=> onOptionSelected('plesioso') }>... plesioso</button>
-  //   </main>
-  // );
 }
-
-// .mt-20
-
-// .mt-40
-
-// .mt-54
-
-// .mt-60
-
-// .mt-75
-
-// .mt-80

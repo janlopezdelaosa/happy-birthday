@@ -68,7 +68,7 @@ export const structure = [
     },
     // 7
     {
-        text: 'Encima apareció un señor'
+        text: 'Encima apareció un señor.'
     },
     {
         text: 'Pero bueno, no se está mal en sus patotas',
@@ -172,7 +172,7 @@ export const structure = [
     },
     // 19
     {
-        text: 'En realidad \n no están tan mal \n estos humanos.',
+        text: 'No se está tan mal \n con estos humanos.',
         image:{
             top: 5
         }
@@ -184,7 +184,7 @@ export const structure = [
         },
         options: [
             {
-                text: 'Te quiero',
+                text: '¡Te quiero!',
                 isCorrect: false,
                 answer: '*mordisco*'
             },
