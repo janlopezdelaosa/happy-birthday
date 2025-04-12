@@ -95,7 +95,27 @@ export default function Stage1() {
 
   return (
     <main className='touch-none'>
-      <p className='hidden -ml-30 w-3/4 mt-30 mt-100 ml-23 mt-90 ml-35 mt-93 mt-108 ml-45 mt-150 ml-90 mt-5 mt-2 ml-55 mt-155 rotate-270 w-3/4'></p>
+      <p className='hidden mt-0'></p>
+      <p className='hidden mt-2 '></p>
+      <p className='hidden mt-5'></p>
+      <p className='hidden mt-10'></p>
+      <p className='hidden mt-40'></p>
+      <p className='hidden mt-60'></p>
+      <p className='hidden mt-80'></p>
+      <p className='hidden mt-75'></p>
+      <p className='hidden mt-93'></p>
+      <p className='hidden mt-100'></p>
+      <p className='hidden mt-108'></p>
+      <p className='hidden mt-120'></p>
+      <p className='hidden mt-150'></p>
+      <p className='hidden mt-155'></p>
+      <p className='hidden -ml-30'></p>
+      <p className='hidden ml-23'></p>
+      <p className='hidden ml-35'></p>
+      <p className='hidden ml-45'></p>
+      <p className='hidden ml-60'></p>
+      <p className='hidden ml-90'></p>
+      <p className='hidden w-3/4 rotate-270'></p>
       {hasFinishedGame &&
         <button className='absolute top-3 left-3 z-1' onClick={back}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-14 drop-shadow-[0_1.5px_1.5px_rgba(254,254,254,1)]">
