@@ -54,7 +54,7 @@ export default function Stage1() {
     }
   };
 
-  const onOptionSelected = ({ text, isCorrect, answer }: { text: string, isCorrect: boolean, answer: string }) => {
+  const onOptionSelected = ({ isCorrect, answer }: { text: string, isCorrect: boolean, answer: string }) => {
     setIsOptionSelected(true)
     if (isCorrect) {
       setFeedback('😻');
